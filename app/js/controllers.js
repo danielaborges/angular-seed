@@ -14,6 +14,7 @@ wishListControllers.controller('ShowListCtrl', ['$scope', '$http'
 		$http.get('json/pessoal.json').success(function(data){
 			$scope.wishes = data;
 		});
+		$scope.sectionName = 'pessoal';
 }]);
 
 wishListControllers.controller('ShowSectionsCtrl', [function() {
