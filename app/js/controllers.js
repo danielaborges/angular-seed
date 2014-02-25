@@ -15,7 +15,7 @@ wishListControllers.controller('ShowListCtrl', ['$scope', 'Section', 'Wish'
 wishListControllers.controller('ShowListCtrl', ['$scope', '$http'
      ,function($scope, $http) {
 	
-		//fazer funcao/servico loadData()
+		//TODO:: funcao/servico loadData()
 		$http.get('json/sections.json').success(function(data){
 			$scope.sections = data;
 		});
@@ -36,7 +36,7 @@ wishListControllers.controller('ShowListCtrl', ['$scope', '$http'
 		$scope.sectionName = 'pessoal';
 		$scope.priority = 'priority'; 
 		
-		//fazer funcao/servico saveData()
+		//TODO:: funcao/servico saveData()
 		$scope.save = function() {
 		    $http.post('json/pessoal.json', $scope.sections).then(function(data) {
 		      $scope.msg = 'Data saved';
@@ -49,6 +49,9 @@ wishListControllers.controller('ShowSectionsCtrl', [function() {
 
 }]);
 
-wishListControllers.controller('ExpandSectionCtrl', [function() {
-
+wishListControllers.controller('ExpandSectionCtrl', ['$scope', '$routeParams',
+      function($scope, $routeParams) {
+	    $scope.sectionId = $routeParams.sectionId;
 }]);
+
+

@@ -1,13 +1,16 @@
 [
     {
+        "id": "pessoal",
         "name": "Pessoal", 
         "priority": "10"        
     },
 	{
+        "id": "shalom",
         "name": "Shalom", 
         "priority": "7"  
     },
     {
+       "id": "familia",
        "name": "Família", 
        "priority": "9"  
     }

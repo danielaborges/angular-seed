@@ -28,8 +28,11 @@
 			</p>		
 		</div>
 		
-		<p>{{msg}}</p>
-	    <div ng-repeat="section in sections">{{section.name}}</div>
+		<br>
+		<h4>Select Section</h4>
+	    <div ng-repeat="section in sections">
+	    	<a href="#/section/{{section.id}}">{{section.name}}</a>
+	    </div>
 
 	
     </div>
@@ -41,6 +44,8 @@
 	     		<tr>
 	     			<th>Priority</th>
 	     			<th>Name</th>
+	     			<th>Description</th>
+	     			<th>Due Date</th>
 	     			<th>Section</th>
 	     		</tr>
 	     	</thead>
@@ -49,6 +54,8 @@
 	        <tr ng-repeat="wish in wishes | filter:query | orderBy:-priority">	        	
 	          <td>{{wish.priority}}</td>
 	          <td>{{wish.name}}</td>
+	          <td>{{wish.description}}</td>
+	          <td>{{wish.dueDate}}</td>
 	          <td>{{wish.section}}</td>
 	        </tr>
 	      </tbody>	 
