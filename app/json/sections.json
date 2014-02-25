@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Pessoal", 
+        "priority": "10"        
+    },
+	{
+        "name": "Shalom", 
+        "priority": "7"  
+    },
+    {
+       "name": "Família", 
+       "priority": "9"  
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Disco externo", 
+        "description": "", 
+        "section": "Pessoal", 
+        "isAlreadyBought": false, 
+        "dueDate": "31-04-2014",
+        "priority": 9
+    },
+	{
+        "name": "Maquina Fotografica", 
+        "description": "pelo Natal", 
+        "section": "Pessoal", 
+        "isAlreadyBought": false, 
+        "dueDate": "31-12-2014",
+        "priority": 2
+    },
+    {
+        "name": "Cordas para Guitarra", 
+        "description": "nilon", 
+        "section": "Pessoal",  
+        "isAlreadyBought": false, 
+        "dueDate": "30-06-2014",
+        "priority": 3
+    }
+]

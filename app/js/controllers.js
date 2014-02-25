@@ -2,10 +2,24 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
+var wishListControllers = angular.module('myApp.controllers', []);
+/*
+wishListControllers.controller('ShowListCtrl', ['$scope', 'Wish'
+   ,function($scope, Wish) {
+		$scope.wishes = Wish.query();		
+}]);*/
 
-  }])
-  .controller('MyCtrl2', [function() {
+wishListControllers.controller('ShowListCtrl', ['$scope', '$http'
+     ,function($scope, $http) {
+		$http.get('json/pessoal.json').success(function(data){
+			$scope.wishes = data;
+		});
+}]);
 
-  }]);
+wishListControllers.controller('ShowSectionsCtrl', [function() {
+
+}]);
+
+wishListControllers.controller('ExpandSectionCtrl', [function() {
+
+}]);
