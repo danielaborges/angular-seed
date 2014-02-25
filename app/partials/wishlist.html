@@ -3,33 +3,33 @@
     <div class="span4">
       <!--Sidebar content-->
 
-	      Search: <input ng-model="query" placeholder="write query" type="text">
+	      <h4>Search</h4>
+	      <p><input ng-model="query" placeholder="write query" type="text"></p>
 	   <!--    Sort by:
 	      <select ng-model="orderProp">
 	        <option value="name">Alphabetical</option>
 	        <option value="age">Newest</option>
 	      </select>
 		-->
+		<br>
 		<div>
-			<p>Add new Section</p>
-			<p>
-			  <input ng-model="sectionName" placeholder="new section name" type="text">
-			  <button class="btn btn-primary" type="button">Add Section</button>		
-			</p>
-			<p>Add new Wish</p>
-			<p>	
-			  <input ng-model="wishName" placeholder="new wish name" type="text">
-		 	  <p>
-		 	  	<!--TODO : change to sections (Shalom, Pessoal, etc)-->
-		 	 <select ng-model="sectionName" ng-options="wish.name for wish in wishes">{{wish.name}}
-   		  	 </select>
-			  </p>
+			<h4>Add new Section</h4>
+			<p><input ng-model="nSectionName" placeholder="new section name" type="text"></p>
+			<p><button class="btn btn-primary" type="button" ng-click="save()">Add Section</button></p>
+			<br>
+			<h4>Add new Wish</h4>
+			<p>Wish name:</p>
+			  <p><input ng-model="nWishName" placeholder="type wish name" type="text">
+		 	  <p>Section name:</p>		 	  
+		 	 <p><select ng-model="nWishSectionName" ng-options="section.name for section in sections">{{section.name}}</select></p>
+		 	  <p>Priority:</p>
+		 	  <p><select ng-model="nWishPriority" ng-options="option as option for option in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">{{option}}</select></p>
 			  <button class="btn btn-primary" type="button">Add Wish</button>		
 			</p>		
 		</div>
 		
-		
-	   
+		<p>{{msg}}</p>
+	    <div ng-repeat="section in sections">{{section.name}}</div>
 
 	
     </div>
@@ -45,7 +45,8 @@
 	     		</tr>
 	     	</thead>
 	        <tbody>
-	        <tr ng-repeat="wish in wishes | filter:query">	        	
+	        	<!-- Ordenado pelo mais importante -->
+	        <tr ng-repeat="wish in wishes | filter:query | orderBy:-priority">	        	
 	          <td>{{wish.priority}}</td>
 	          <td>{{wish.name}}</td>
 	          <td>{{wish.section}}</td>
