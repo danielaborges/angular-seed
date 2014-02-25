@@ -1,66 +1,107 @@
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span4">
-      <!--Sidebar content-->
+	<div class="row-fluid">
+		<div class="span4">
+			<!--Sidebar content-->
 
-	      <h4>Search</h4>
-	      <p><input ng-model="query" placeholder="write query" type="text"></p>
-	   <!--    Sort by:
-	      <select ng-model="orderProp">
-	        <option value="name">Alphabetical</option>
-	        <option value="age">Newest</option>
-	      </select>
-		-->
-		<br>
-		<div>
-			<h4>Add new Section</h4>
-			<p><input ng-model="nSectionName" placeholder="new section name" type="text"></p>
-			<p><button class="btn btn-primary" type="button" ng-click="save()">Add Section</button></p>
+			<!-- BEGIN of search query -->
+			<h4>Search</h4>
+			<p>
+				<input ng-model="query" placeholder="write query" type="text">
+			</p>
+			 <!-- END OF search -->
+			 
 			<br>
-			<h4>Add new Wish</h4>
-			<p>Wish name:</p>
-			  <p><input ng-model="nWishName" placeholder="type wish name" type="text">
-		 	  <p>Section name:</p>		 	  
-		 	 <p><select ng-model="nWishSectionName" ng-options="section.name for section in sections">{{section.name}}</select></p>
-		 	  <p>Priority:</p>
-		 	  <p><select ng-model="nWishPriority" ng-options="option as option for option in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">{{option}}</select></p>
-			  <button class="btn btn-primary" type="button">Add Wish</button>		
-			</p>		
+			<!-- BEGIN of create section -->
+			<div>
+				<h4>Add new Section</h4>
+				<p>
+					<input ng-model="nSectionName" placeholder="new section name" type="text">
+				</p>
+				<p>
+					<button class="btn btn-primary" type="button" ng-click="save()">
+						Add Section
+					</button>
+				</p>
+				 <!-- END OF create new section -->
+				 
+				<br>
+				<!-- BEGIN of create new wish -->
+				<h4>Add new Wish</h4>
+				<p>
+					Wish name:
+				</p>
+				<p>
+					<input ng-model="nWishName" placeholder="type wish name" type="text">
+				<p>
+					Section name:
+				</p>
+				<p>
+					<select ng-model="nWishSectionName" ng-options="section.name for section in sections">
+						{{section.name}}
+					</select>
+				</p>
+				<p>
+					Priority:
+				</p>
+				<p>
+					<select ng-model="nWishPriority" ng-options="option as option for option in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
+						{{option}}
+					</select>
+				</p>
+				<button class="btn btn-primary" type="button">
+					Add Wish
+				</button>
+				</p>
+			</div>
+			 <!-- END OF create new wish -->
+
+			<br>
+			<!-- BEGIN of select different sections -->
+			<h4>Select Section</h4>
+			<div ng-repeat="section in sections">
+				<i class="icon-heart"></i><a href="#/section/{{section.id}}">{{section.name}}</a>
+			</div>
+			 <!-- END OF "select section" -->
+
 		</div>
-		
-		<br>
-		<h4>Select Section</h4>
-	    <div ng-repeat="section in sections">
-	    	<a href="#/section/{{section.id}}">{{section.name}}</a>
-	    </div>
+		<div class="span5">
+			<!--Body content-->
 
-	
-    </div>
-    <div class="span5">
-      <!--Body content-->
+			<!-- BEGIN identify and create sections (pessoal, shalom, etc)-->
+			<div ng-repeat="section in sections">
+				<section>
+					<legend>
+						{{section.name}}
+					</legend>
 
-	 <table class="table table-hover table-condensed">	        
-	     	<thead>
-	     		<tr>
-	     			<th>Priority</th>
-	     			<th>Name</th>
-	     			<th>Description</th>
-	     			<th>Due Date</th>
-	     			<th>Section</th>
-	     		</tr>
-	     	</thead>
-	        <tbody>
-	        	<!-- Ordenado pelo mais importante -->
-	        <tr ng-repeat="wish in wishes | filter:query | orderBy:-priority">	        	
-	          <td>{{wish.priority}}</td>
-	          <td>{{wish.name}}</td>
-	          <td>{{wish.description}}</td>
-	          <td>{{wish.dueDate}}</td>
-	          <td>{{wish.section}}</td>
-	        </tr>
-	      </tbody>	 
-      </table>
+					<!-- BEGIN populate content inside sections (pessoal, shalom, etc)-->
+					<table class="table table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>Priority</th>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Due Date</th>
+								<th>Section</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Ordenado pelo mais importante -->
+							<tr ng-repeat="wish in wishes | filter:query | orderBy:-priority">
+								<td>{{wish.priority}}</td>
+								<td>{{wish.name}}</td>
+								<td>{{wish.description}}</td>
+								<td>{{wish.dueDate}}</td>
+								<td>{{wish.section}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- END OF content inside sections -->
 
-    </div>
-  </div>
+				</section>
+				<!-- END OF sections -->
+			</div>
+
+		</div>
+	</div>
 </div>
