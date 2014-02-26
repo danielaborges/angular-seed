@@ -17,22 +17,12 @@ wishListControllers.controller('ShowListCtrl', [
 		'$http',
 		function($scope, $http) {
 
-			//TODO:: funcao/servico loadData()
 			$http.get('json/sections.json').success(function(data) {
 				$scope.sections = data;
 			});
 			$http.get('json/pessoal.json').success(function(data) {
 				$scope.wishes = data;
 			});
-
-			/*$scope.sections = loadData('json/sections.json');
-			$scope.wishes = loadData('json/pessoal.json');
-			
-			var loadData = function(fileToLoad){
-				$http.get(fileToLoad).success(function(data){
-					return data;
-				});				
-			};*/
 
 			$scope.sectionName = 'pessoal';
 			$scope.priority = 'priority';
@@ -55,11 +45,11 @@ wishListControllers.controller('ShowSectionsCtrl', [ '$scope', '$http',
 		} ]);
 
 wishListControllers.controller('ExpandSectionCtrl', [ '$scope', '$routeParams',
-		function($scope, $routeParams) {
-	
-	
+		'wishFactory',
+		function($scope, $routeParams, wishFactory) {
 			$scope.sectionId = $routeParams.sectionId;
-		} ]);
 
-
-
+			$scope.wishes = wishFactory.query({sectionId: $routeParams.sectionId}, function(wish){	
+			//	alert('hello!');
+			});
+}]);

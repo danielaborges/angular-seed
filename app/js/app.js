@@ -7,7 +7,7 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'myApp.controllers',
-  'myApp.filters'
+  'myApp.filters',
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/wishlist', {templateUrl: 'partials/wishlist.html', controller: 'ShowListCtrl'});

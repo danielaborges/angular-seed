@@ -5,6 +5,14 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-var wishListServices = angular.module('myApp.services', []);
+var wishListServices = angular.module('myApp.services', ['ngResource']);
 
-wishListServices.value('version', '0.1');
+// one file per section -> efficiency
+
+wishListServices.factory('wishFactory', ['$resource',
+        function($resource){
+	return $resource('json/:sectionId.json', {},{
+		query: {method: 'GET', params:{sectionId:'sections'}, isArray:true}
+		});
+	}]);
+	

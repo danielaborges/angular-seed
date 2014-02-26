@@ -1,6 +1,30 @@
-<p>
-	Detailed section
-</p>
-<p>
-	SECTION DETAIL:: detail view for {{sectionId}}
-</p>
+<section>
+	<legend>
+		<!--TODO change to section.name and icon -->
+		{{sectionId}}
+	</legend>
+</section>
+
+<!-- BEGIN populate content inside section -->
+<table class="table table-hover table-condensed">
+	<thead>
+		<tr>
+			<th>Priority</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Due Date</th>
+			<th>Section</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!-- Ordenado pelo mais importante -->
+		<tr ng-repeat="wish in wishes | filter:query | orderBy:-priority">
+			<td>{{wish.priority}}</td>
+			<td>{{wish.name}}</td>
+			<td>{{wish.description}}</td>
+			<td>{{wish.dueDate}}</td>
+			<td>{{wish.section}}</td>
+		</tr>
+	</tbody>
+</table>
+<!-- END OF content inside section -->
