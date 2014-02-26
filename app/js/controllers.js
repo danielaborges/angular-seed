@@ -4,52 +4,76 @@
 
 var wishListControllers = angular.module('myApp.controllers', []);
 
-/*
- wishListControllers.controller('ShowListCtrl', ['$scope', 'Section', 'Wish'
- ,function($scope, Section, Wish) {
- $scope.sections = Section.query();
- $scope.wishes = Wish.query();
- $scope.sectionName = 'pessoal';
- }]);*/
+// TODO apagar $http assim que tiver vector dinamico de seccoes
+wishListControllers.controller('ShowListCtrl',
+		[
+				'$scope',
+				'$http',
+				'$routeParams',
+				'WishFactory',
+				'UpdateSectionFactory',
+				function($scope, $http, $routeParams, WishFactory,
+						UpdateSectionFactory) {
+					$scope.sectionId = $routeParams.sectionId;
 
-wishListControllers.controller('ShowListCtrl', [
-		'$scope',
-		'$http',
-		function($scope, $http) {
+					$scope.sections = WishFactory.query();
 
-			$http.get('json/sections.json').success(function(data) {
-				$scope.sections = data;
-			});
-			$http.get('json/pessoal.json').success(function(data) {
-				$scope.wishes = data;
-			});
+					// bad implementation
+					$http.get('json/pessoal.json').success(function(data) {
+						$scope.wishes = data;
+					});
 
-			$scope.sectionName = 'pessoal';
-			$scope.priority = 'priority';
+					/*
+					 * alert($scope.sections.length); for(var i=0; i <
+					 * $scope.sections.length; i++){
+					 * 
+					 * //NOTE: $scope.wishes esta a ser adicionado multiplas
+					 * vezes.. como alterar dinamicamente? $scope.wishes =
+					 * wishFactory.query({sectionId : $routeParams.sectionId},
+					 * function(wish) { alert('hello!'); }); alert(i); }
+					 */
 
-			//TODO:: funcao/servico saveData()
-			$scope.save = function() {
-				$http.post('json/pessoal.json', $scope.sections).then(
-						function(data) {
-							$scope.msg = 'Data saved';
-						});
-				// $scope.msg = 'Data sent: '+ JSON.stringify($scope.sections);
-			};
-		} ]);
+					// saveChanges
+					$scope.save = function() {						
+						//$http.post('api/wishes', $scope.wishes);
+						alert("Changes were saved!\r\n"
+								+ JSON.stringify($scope.wishes)); //but to saved to JSON (yet..)
+					};
 
-wishListControllers.controller('ShowSectionsCtrl', [ '$scope', '$http',
-		function($scope, $http) {
-			$http.get('json/sections.json').success(function(data) {
-				$scope.sections = data;
-			});
+					// add new Section
+					// TODO
+					$scope.addNewSection = function(sectionData) {
+
+						$scope.nSectionData = {
+							"id" : sectionData.nSectionName,
+							"name" : sectionData.nSectionName,
+							"priority" : "2",
+							"icon" : "heart"
+						};
+						$scope.sections.append($scope.nSectionData);
+						$http.post('json/sections', $scope.sections);
+
+						// JSON.stringify($scope.sections);
+						// UpdateSectionFactory.update({id:$scope.nSectionData});
+						alert('section added!' + $scope.nSectionData.id);
+					}
+					// add new Wish
+					// TODO
+
+				} ]);
+
+wishListControllers.controller('ShowSectionsCtrl', [ '$scope', 'WishFactory',
+		function($scope, WishFactory) {
+			$scope.sections = WishFactory.query();
 		} ]);
 
 wishListControllers.controller('ExpandSectionCtrl', [ '$scope', '$routeParams',
-		'wishFactory',
-		function($scope, $routeParams, wishFactory) {
+		'WishFactory', function($scope, $routeParams, WishFactory) {
 			$scope.sectionId = $routeParams.sectionId;
 
-			$scope.wishes = wishFactory.query({sectionId: $routeParams.sectionId}, function(wish){	
-			//	alert('hello!');
+			$scope.wishes = WishFactory.query({
+				sectionId : $routeParams.sectionId
+			}, function(wish) {
+				// alert('hello!');
 			});
-}]);
+		} ]);

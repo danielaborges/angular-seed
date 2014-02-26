@@ -11,14 +11,14 @@
 			 <!-- END OF search -->
 			 
 			<br>
-			<!-- BEGIN of create section -->
 			<div>
+				<!-- BEGIN of create section -->
 				<h4>Add new Section</h4>
 				<p>
-					<input ng-model="nSectionName" placeholder="new section name" type="text">
+					<input ng-model="sectionData.nSectionName" placeholder="new section name" type="text">
 				</p>
 				<p>
-					<button class="btn btn-primary" type="button" ng-click="save()">
+					<button class="btn btn-primary" type="button" ng-click="addNewSection(sectionData)">
 						Add Section
 					</button>
 				</p>
@@ -64,9 +64,11 @@
 			 <!-- END OF "select section" -->
 
 		</div>
-		<div class="span5">
+		<div class="span6">
 			<!--Body content-->
 
+			<button ng-click="save()" class="btn btn-primary">Save Changes</button>
+		
 			<!-- BEGIN identify and create sections (pessoal, shalom, etc)-->
 			<div ng-repeat="section in sections">
 				<section>
@@ -84,11 +86,12 @@
 								<th>Due Date</th>
 								<th>Section</th>
 								<th>Bought?</th>
+								<th>Remove?</th>
 							</tr>
 						</thead>
 						<tbody>
 							<!-- Ordenado pelo mais importante -->
-							<tr ng-repeat="wish in wishes | filter:query | orderBy:-priority">
+							<tr ng-class="{'alreadyBought': wish.isAlreadyBought}" ng-repeat="wish in wishes | filter:query | orderBy:-priority">
 								<td>{{wish.priority}}</td>
 								<td>{{wish.name}}</td>
 								<td>{{wish.description}}</td>
@@ -96,6 +99,7 @@
 								<td>{{wish.section}}</td>
 								<td><i class="icon-{{wish.isAlreadyBought | checkmark}}"><i></td>
 								<!--<td>{{wish.isAlreadyBought}}</td>-->
+								<td><button ng-click="wishes.splice($index,1)" class="btn btn-danger">-</button></td>
 							</tr>
 						</tbody>
 					</table>

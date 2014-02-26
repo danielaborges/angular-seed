@@ -19,7 +19,7 @@
         "name": "Cordas para Guitarra", 
         "description": "nilon", 
         "section": "Pessoal",  
-        "isAlreadyBought": true, 
+        "isAlreadyBought": false, 
         "dueDate": "30-06-2014",
         "priority": 3
     }
