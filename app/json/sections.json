@@ -2,16 +2,25 @@
     {
         "id": "pessoal",
         "name": "Pessoal", 
-        "priority": "10"        
+        "priority": "10",
+        "icon": "star"
     },
 	{
         "id": "shalom",
         "name": "Shalom", 
-        "priority": "7"  
+        "priority": "7",
+        "icon": "thumbs-up"  
     },
     {
        "id": "familia",
        "name": "Família", 
-       "priority": "9"  
+       "priority": "9",
+       "icon": "heart"  
+    },
+    {
+       "id": "trabalho",
+       "name": "Trabalho", 
+       "priority": "8",
+       "icon": "briefcase"  
     }
 ]

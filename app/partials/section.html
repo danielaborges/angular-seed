@@ -1,4 +1,10 @@
-<p>Detailed section</p>
-<p>
-SECTION:: detail view for {{sectionId}}
-</p>
+<!-- BEGIN identify and create sections (pessoal, shalom, etc)-->
+<div ng-repeat="section in sections">
+	<section>
+		<!-- TODO add button to expand section -->
+		<legend>
+			<i class="icon-{{section.icon}}"></i> {{section.name}}
+		</legend>
+	</section>
+	<!-- END OF sections -->
+</div>

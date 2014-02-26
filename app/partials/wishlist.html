@@ -59,7 +59,7 @@
 			<!-- BEGIN of select different sections -->
 			<h4>Select Section</h4>
 			<div ng-repeat="section in sections">
-				<i class="icon-heart"></i><a href="#/section/{{section.id}}">{{section.name}}</a>
+				<i class="icon-{{section.icon}}"></i> <a href="#/section/{{section.id}}">{{section.name}}</a>
 			</div>
 			 <!-- END OF "select section" -->
 
@@ -71,7 +71,7 @@
 			<div ng-repeat="section in sections">
 				<section>
 					<legend>
-						{{section.name}}
+						<i class="icon-{{section.icon}}"></i> {{section.name}}
 					</legend>
 
 					<!-- BEGIN populate content inside sections (pessoal, shalom, etc)-->
@@ -83,6 +83,7 @@
 								<th>Description</th>
 								<th>Due Date</th>
 								<th>Section</th>
+								<th>Bought?</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -93,6 +94,8 @@
 								<td>{{wish.description}}</td>
 								<td>{{wish.dueDate}}</td>
 								<td>{{wish.section}}</td>
+								<td><i class="icon-{{wish.isAlreadyBought | checkmark}}"><i></td>
+								<!--<td>{{wish.isAlreadyBought}}</td>-->
 							</tr>
 						</tbody>
 					</table>

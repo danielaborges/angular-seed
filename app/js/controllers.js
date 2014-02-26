@@ -47,11 +47,19 @@ wishListControllers.controller('ShowListCtrl', [
 			};
 		} ]);
 
-wishListControllers.controller('ShowSectionsCtrl', [ function() {
-
-} ]);
+wishListControllers.controller('ShowSectionsCtrl', [ '$scope', '$http',
+		function($scope, $http) {
+			$http.get('json/sections.json').success(function(data) {
+				$scope.sections = data;
+			});
+		} ]);
 
 wishListControllers.controller('ExpandSectionCtrl', [ '$scope', '$routeParams',
 		function($scope, $routeParams) {
+	
+	
 			$scope.sectionId = $routeParams.sectionId;
 		} ]);
+
+
+
